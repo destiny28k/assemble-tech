@@ -1,0 +1,20 @@
+/* Same two columns and gutter as the section grids below, so the intro text lines up with the content under it */
+.head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px var(--col-gap); align-items: end; margin-bottom: clamp(32px, 4.5vw, 64px); }
+/* Title runs the full width so it breaks into a few long lines instead of a narrow stack;
+   the intro text sits under it in the right column, above the content's right column */
+.head h2 { grid-column: 1 / -1; font-size: clamp(40px, 5.6vw, 96px); max-width: 22ch; }
+.text { grid-column: 2; color: var(--muted); max-width: 46ch; justify-self: start; }
+.dark .text { color: var(--night-muted); }
+
+/* Sheet label, like the title block on an engineering drawing */
+.sheet { grid-column: 1 / -1; display: flex; align-items: center; gap: 14px; color: var(--muted); }
+.sheet::before { content: ""; width: 9px; height: 9px; background: var(--signal); flex: none; }
+.sheet b { color: var(--ink); font-weight: 500; }
+.dark .sheet, .sheet.dark { color: var(--night-muted); }
+.dark .sheet b, .sheet.dark b { color: var(--night-ink); }
+
+/* Same breakpoint as the section grids, so head and content go to one column together */
+@media (max-width: 860px) {
+  .head { grid-template-columns: minmax(0, 1fr); }
+  .text { grid-column: 1; }
+}

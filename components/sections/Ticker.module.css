@@ -1,0 +1,6 @@
+.ticker { border-block: 1px solid var(--rule); overflow: hidden; padding-block: 18px; background: var(--paper); }
+.row { display: flex; width: max-content; will-change: transform; }
+.row + .row { margin-top: 10px; }
+.row span { font-family: var(--display); font-weight: 700; font-stretch: 112%; font-size: clamp(26px, 3.4vw, 46px); letter-spacing: -.02em; white-space: nowrap; padding-right: 26px; display: inline-flex; align-items: center; gap: 26px; }
+.row span::after { content: "/"; color: var(--signal); font-weight: 500; }
+.outline span { color: transparent; -webkit-text-stroke: 1px var(--ink); }

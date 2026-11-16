@@ -1,0 +1,8 @@
+/* No bottom padding: the next section's own top padding is the gap, so the two don't stack */
+.section { padding-bottom: 0; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.item { padding: 28px 20px 0 0; display: grid; gap: 8px; align-content: start; }
+.item b { font-family: var(--display); font-weight: 800; font-stretch: 118%; font-size: clamp(40px, 5vw, 80px); letter-spacing: -.04em; line-height: .9; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.item span { color: var(--muted); max-width: 22ch; }
+
+@media (max-width: 760px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; } }

@@ -1,0 +1,48 @@
+/* Scattered tools straighten and snap into one system as the page scrolls */
+.untangle { position: relative; }
+.pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 16px; padding-block: 84px 26px; }
+.head { display: flex; justify-content: space-between; align-items: end; gap: 14px 40px; flex-wrap: wrap; }
+.headLeft { display: grid; gap: 16px; }
+.titles { display: grid; }
+.titles h2 { grid-area: 1 / 1; font-size: clamp(32px, 4.8vw, 76px); max-width: 16ch; }
+.after { opacity: 0; }
+.after em { font-style: normal; color: #8FA2FF; }
+.side { display: grid; gap: 10px; justify-items: start; max-width: 38ch; }
+.side p { color: var(--night-muted); }
+.side .hint { color: var(--signal); }
+
+.stage { position: relative; width: 100%; max-width: 1180px; margin-inline: auto; min-height: 0; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.card { position: absolute; left: 0; top: 0; width: clamp(128px, 22%, 250px); translate: -50% -50%; will-change: transform; z-index: 1; }
+.face { padding: 11px 13px; border: 1px solid; display: grid; gap: 3px; min-width: 0; }
+.face span { font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.face b { font-weight: 600; font-size: clamp(12.5px, 1.2vw, 15px); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.old { background: var(--tone); color: #13151B; border-color: rgba(0, 0, 0, .18); box-shadow: 0 16px 34px rgba(0, 0, 0, .4); }
+.old .warn { color: #B42F14; }
+.new { position: absolute; inset: 0; background: var(--night-2); border-color: var(--night-3); color: var(--night-ink); opacity: 0; }
+.new span { color: var(--good); }
+.new b::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 8px; background: var(--cobalt); vertical-align: 1px; }
+.core { z-index: 2; }
+.core .new { background: var(--cobalt); border-color: var(--cobalt); color: #fff; }
+.core .new span { color: #DDE3FF; }
+.core .new b::before { background: #fff; }
+
+.meters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--night-3); }
+.meters div { padding: 12px 16px 0 0; display: grid; gap: 2px; min-width: 0; }
+.meters span { color: var(--night-muted); }
+.meters b { font-family: var(--display); font-weight: 800; font-stretch: 115%; font-size: clamp(24px, 3.2vw, 48px); letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.meters b.done { color: var(--good); }
+
+/* Without motion: no pinning, shown already assembled */
+.static .pin { position: static; height: auto; padding-block: var(--section-pad); }
+.static .stage { height: 70vh; }
+
+@media (max-width: 760px) {
+  .pin { padding-block: 72px 18px; }
+  .side p:first-child { display: none; }
+  .card { width: 30%; }
+  .face { padding: 8px 9px; }
+  .face span { font-size: 9px; }
+  /* Let card names wrap instead of being cut off ("Sales & C…") */
+  .face b { white-space: normal; font-size: 11.5px; overflow-wrap: anywhere; }
+}

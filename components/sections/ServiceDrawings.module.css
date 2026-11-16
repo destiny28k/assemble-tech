@@ -1,0 +1,24 @@
+/* Line drawings that draw themselves (stroke-dashoffset) when their service is in view */
+.vis { position: absolute; inset: 0 0 34px; opacity: 0; transition: opacity .4s; pointer-events: none; }
+.on { opacity: 1; }
+.vis svg { width: 100%; height: 100%; }
+.s { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+.c { fill: none; stroke: var(--cobalt); stroke-width: 1.6; }
+.d { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s var(--ease); }
+.on .d { stroke-dashoffset: 0; }
+.f { opacity: 0; transition: opacity .6s; }
+.on .f { opacity: 1; }
+.vis text { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; fill: var(--ink); }
+.vis text.m { fill: var(--muted); }
+.pk { fill: var(--signal); }
+.fill { fill: var(--cobalt-soft); }
+.led { fill: var(--good); animation: blink 1.4s steps(2, end) infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.scroll { animation: feed 4s linear infinite; }
+@keyframes feed { to { transform: translateY(-80px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .d { stroke-dashoffset: 0; transition: none; }
+  .f { transition: none; }
+  .led, .scroll { animation: none; }
+}

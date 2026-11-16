@@ -1,0 +1,4 @@
+.cursor { position: fixed; left: 0; top: 0; z-index: 90; pointer-events: none; mix-blend-mode: difference; }
+.ring { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1px solid #fff; border-radius: 50%; transition: width .3s var(--ease), height .3s var(--ease), margin .3s var(--ease); }
+.dot { position: absolute; width: 4px; height: 4px; margin: -2px 0 0 -2px; background: #fff; }
+.big .ring { width: 70px; height: 70px; margin: -35px 0 0 -35px; }

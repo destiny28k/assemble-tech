@@ -1,26 +1,59 @@
-@import "tailwindcss";
+/* Global styles only: reset, design tokens, base elements and shared utilities.
+   Each component keeps its own styles in a CSS module next to it.
+   Layout idea: a set of engineering drawing sheets. Drafting-paper sections numbered as sheets,
+   dark "running system" bands between them; parts, part numbers and exploded views throughout. */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #ECEDE8;
+  --paper-2: #E1E3DC;
+  --ink: #13151B;
+  --muted: #5D6170;
+  --rule: rgba(19, 21, 27, .14);
+  --cobalt: #2B45F5;
+  --cobalt-soft: rgba(43, 69, 245, .12);
+  --signal: #FF5A1F;
+  --night: #0D1120;
+  --night-2: #161B2E;
+  --night-3: #1F2640;
+  --night-ink: #E8EAF2;
+  --night-muted: #8A90A6;
+  --good: #3DDC97;
+  --display: "Archivo", "Arial Black", Arial, sans-serif;
+  --body: "Geist", "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "Geist Mono", "JetBrains Mono", Consolas, monospace;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --section-pad: clamp(56px, 7vw, 104px); /* vertical space above and below every section */
+  --col-gap:clamp(32px, 6vw, 96px); /* gutter between the two columns of section heads and section grids */
+  color-scheme: light;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--paper); }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 3px; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Shared utilities */
+.wrap { max-width: 1280px; margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.mono { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.display { font-family: var(--display); font-weight: 800; font-stretch: 118%; letter-spacing: -.03em; line-height: .92; }
+.grid-bg { background-image: linear-gradient(var(--rule) 1px, transparent 1px), linear-gradient(90deg, var(--rule) 1px, transparent 1px); background-size: 48px 48px; background-position: -1px -1px; }
+.section { padding-block: var(--section-pad); }
+.dark { background: var(--night); color: var(--night-ink); }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* The custom cursor replaces the system one on desktop */
+.has-cursor, .has-cursor a, .has-cursor button, .has-cursor label { cursor: none; }
+
+/* Scroll reveal. data-motion is set on <html> only when motion is allowed, so the page is complete without it. */
+html[data-motion] [data-reveal] { opacity: 0; transform: translateY(40px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+html[data-motion] [data-reveal].in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

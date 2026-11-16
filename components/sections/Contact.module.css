@@ -1,0 +1,29 @@
+.section { border-top: 1px solid var(--night-3); }
+/* Same two equal columns and gutter as the other sections */
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px var(--col-gap); align-items: start; }
+.intro { display: grid; gap: 0; align-content: start; }
+/* Same size as the other section titles */
+.kinetic { font-size: clamp(40px, 5.6vw, 96px); margin-top: 24px; }
+.word { display: inline-block; white-space: nowrap; }
+.ch { display: inline-block; will-change: transform; transition: color .3s; }
+.hot { color: var(--signal); }
+.lead { color: var(--night-muted); max-width: 40ch; margin-top: 24px; }
+
+.form { display: grid; gap: 20px; min-width: 0; }
+.field { display: grid; gap: 8px; }
+.field > span { color: var(--night-muted); }
+.field input, .field select, .field textarea { background: transparent; border: 0; border-bottom: 1px solid var(--night-3); padding: 10px 0; color: var(--night-ink); font-size: 17px; width: 100%; min-width: 0; border-radius: 0; }
+.field select option { background: var(--night); }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 0; border-bottom-color: var(--cobalt); }
+.field textarea { resize: vertical; min-height: 90px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips label { position: relative; cursor: pointer; }
+.chips input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.chips span { display: inline-block; padding: 8px 14px; border: 1px solid var(--night-3); font-family: var(--mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--night-muted); transition: background-color .25s, color .25s, border-color .25s; }
+.chips input:checked + span { background: var(--cobalt); border-color: var(--cobalt); color: #fff; }
+.chips input:focus-visible + span { outline: 2px solid var(--cobalt); outline-offset: 2px; }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.sent { color: var(--good); }
+
+@media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) { .two { grid-template-columns: minmax(0, 1fr); } }
